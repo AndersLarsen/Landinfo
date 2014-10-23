@@ -46,7 +46,10 @@ public class GetLandData extends AsyncTask<Void,Void,Void> {
             }
             if ( buffer.length() == 0){
                 return null;
+
             }
+            String s = "";
+
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
