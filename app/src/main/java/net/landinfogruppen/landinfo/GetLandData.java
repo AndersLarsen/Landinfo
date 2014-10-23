@@ -1,6 +1,7 @@
 package net.landinfogruppen.landinfo;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,12 +14,12 @@ import java.net.URL;
 /**
  * Created by andborlar on 23.10.2014.
  */
-public class GetLandData extends AsyncTask<Void,Void,Void> {
+public class GetLandData extends AsyncTask<Void, Void, String> {
 
 
 
     @Override
-    protected Void doInBackground(Void... params) {
+    protected String doInBackground(Void... params) {
 
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
@@ -48,7 +49,8 @@ public class GetLandData extends AsyncTask<Void,Void,Void> {
                 return null;
 
             }
-            String s = "";
+            landDataJsonStr = buffer.toString();
+            Log.d("json stringen ", landDataJsonStr);
 
 
         } catch (MalformedURLException e) {
@@ -57,6 +59,6 @@ public class GetLandData extends AsyncTask<Void,Void,Void> {
             e.printStackTrace();
         }
 
-        return null;
+        return landDataJsonStr;
     }
 }
