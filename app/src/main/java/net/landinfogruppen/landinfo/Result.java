@@ -40,6 +40,7 @@ public class Result extends Activity {
         ListView listView = (ListView)findViewById(R.id.listView);
         listView.setAdapter(landDataAdapter);
 
+
     }
 
 
