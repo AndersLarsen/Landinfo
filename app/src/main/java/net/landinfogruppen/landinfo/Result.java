@@ -108,8 +108,6 @@ public class Result extends Activity {
 
             try {
 
-
-
                 JSONObject jsonObject = new JSONObject(landDataJsonStr);
                 landArray = jsonObject.getJSONArray("LandArray");
 
