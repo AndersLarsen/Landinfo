@@ -27,15 +27,17 @@ public class Result extends Activity {
 
     private ArrayAdapter<String> landDataAdapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-
         Intent intent = getIntent();
         String landSrc = intent.getStringExtra(MainActivity.EXTRA_LANDSRC);
         GetLandData getLandData = new GetLandData();
         getLandData.execute(landSrc);
+
+
 
         ListView listView = (ListView)findViewById(R.id.listView);
         listView.setAdapter(landDataAdapter);
@@ -69,12 +71,13 @@ public class Result extends Activity {
         @Override
         protected JSONArray doInBackground(String... params) {
 
+            String landSrc = params[0];
             HttpURLConnection urlConnection = null;
             BufferedReader reader = null;
             String landDataJsonStr = null;
             JSONArray landArray = null;
             try {
-                URL url = new URL("http://restcountries.eu/rest/v1");
+                URL url = new URL("http://restcountries.eu/rest/v1/name/"+landSrc);
 
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
@@ -109,8 +112,9 @@ public class Result extends Activity {
 
             try {
 
-                JSONObject jsonObject = new JSONObject(landDataJsonStr);
-                landArray = jsonObject.getJSONArray("LandArray");
+                 landArray = new JSONArray(landDataJsonStr);
+                //JSONObject jsonObject = new JSONObject(landDataJsonStr);
+                //landArray = jsonObject.getJSONArray("list");
 
                 //    SharedPreferences prefs = .getSharedPreferences("net.landinfogruppen.landinfo", Context.MODE_PRIVATE);
             } catch (JSONException e) {
@@ -123,8 +127,9 @@ public class Result extends Activity {
         protected void onPostExecute(JSONArray landArray) {
             //super.onPostExecute(landArray);
             if (landArray != null){
-                String[] resultStr = new String[landArray.length()-1];
 
+                Log.d("landArray.length: ",Integer.toString(landArray.length()));
+                String[] resultStr = new String[landArray.length()];
                 for (int i = 0; i<landArray.length();i++){
                     try {
                         JSONObject land = landArray.getJSONObject(i);
@@ -135,8 +140,8 @@ public class Result extends Activity {
                         e.printStackTrace();
                     }
                 }
-                if (resultStr != null){
-                    landDataAdapter.clear();
+                if (resultStr.length != 0){
+                    //landDataAdapter.clear();
                     for ( String landStr : resultStr){
                         landDataAdapter.add(landStr);
                     }
