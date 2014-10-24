@@ -41,6 +41,7 @@ public class Result extends Activity {
         listView.setAdapter(landDataAdapter);
 
 
+
     }
 
 
