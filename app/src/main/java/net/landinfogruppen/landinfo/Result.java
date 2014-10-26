@@ -21,11 +21,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 
 public class Result extends Activity {
 
     private ArrayAdapter<String> landDataAdapter;
+
 
 
     @Override
@@ -34,15 +36,15 @@ public class Result extends Activity {
         setContentView(R.layout.activity_result);
         Intent intent = getIntent();
         String landSrc = intent.getStringExtra(MainActivity.EXTRA_LANDSRC);
-        GetLandData getLandData = new GetLandData();
-        getLandData.execute(landSrc);
 
-
-
-        ListView listView = (ListView)findViewById(R.id.listView);
+        // instanserer ArrayAdapter slik at resultat fra GetLandData kan legges inn
+        landDataAdapter = new ArrayAdapter<String>(this, R.layout.listview, new ArrayList<String>());
+        ListView listView = (ListView)findViewById(R.id.land_list);
         listView.setAdapter(landDataAdapter);
 
-
+        // starter AsyncTask for henting av data
+        GetLandData getLandData = new GetLandData();
+        getLandData.execute(landSrc);
 
     }
 
