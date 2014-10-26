@@ -34,6 +34,12 @@ public class Result extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
         Intent intent = getIntent();
         String landSrc = intent.getStringExtra(MainActivity.EXTRA_LANDSRC);
 
@@ -45,9 +51,7 @@ public class Result extends Activity {
         // starter AsyncTask for henting av data
         GetLandData getLandData = new GetLandData();
         getLandData.execute(landSrc);
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
