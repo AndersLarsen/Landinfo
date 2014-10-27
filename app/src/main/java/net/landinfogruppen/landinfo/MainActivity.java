@@ -30,6 +30,7 @@ public class MainActivity extends Activity {
                 String landSrc = editText.getText().toString();
                 intent.putExtra(EXTRA_LANDSRC, landSrc);
                 startActivity(intent);
+
             }
         });
 

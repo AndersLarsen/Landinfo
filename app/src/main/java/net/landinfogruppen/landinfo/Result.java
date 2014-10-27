@@ -29,7 +29,8 @@ import java.util.ArrayList;
 public class Result extends Activity {
 
     private ArrayAdapter<String> landDataAdapter;
-
+    String landName;
+    public final static String EXTRA_LANDSRC = "net.landinfogruppen.landinfo.MESSAGE";
 
 
     @Override
@@ -54,6 +55,9 @@ public class Result extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent(Result.this,Detail.class);
+                String selectedFromList = (String) listView.getItemAtPosition(position);
+                intent.putExtra(EXTRA_LANDSRC, selectedFromList);
+                Log.d("Selected from list" , selectedFromList);
                 startActivity(intent);
 
             }
@@ -64,24 +68,6 @@ public class Result extends Activity {
         getLandData.execute(landSrc);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.result, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
 
     public class GetLandData extends AsyncTask<String, Void, JSONArray> {
@@ -150,7 +136,7 @@ public class Result extends Activity {
                 for (int i = 0; i<landArray.length();i++){
                     try {
                         JSONObject land = landArray.getJSONObject(i);
-                        String landName = land.getString("name");
+                         landName = land.getString("name");
                         resultStr[i] = landName;
 
                     } catch (JSONException e) {
@@ -168,6 +154,25 @@ public class Result extends Activity {
         }
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.result, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
 }
 
