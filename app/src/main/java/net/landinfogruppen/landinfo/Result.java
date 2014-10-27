@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.apache.http.HttpStatus;
 import org.json.JSONArray;
@@ -164,6 +165,12 @@ public class Result extends Activity {
                         landDataAdapter.add(landStr);
                     }
                 }
+
+            }
+            else {
+                Toast.makeText(getApplicationContext(),
+                        "Sorry, no match for your search was found", Toast.LENGTH_LONG).show();
+
 
             }
         }

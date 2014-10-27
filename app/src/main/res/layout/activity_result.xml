@@ -21,6 +21,6 @@
         android:layout_height="match_parent"
         android:paddingTop="50dp"
         android:paddingLeft="40dp"
-        android:text="@string/search_not_found"/>
+       />
 
 </RelativeLayout>
