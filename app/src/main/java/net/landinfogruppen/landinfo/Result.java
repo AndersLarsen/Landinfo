@@ -81,7 +81,13 @@ public class Result extends Activity {
             BufferedReader reader = null;
             JSONArray landArray = null;
             try {
-                URL url = new URL("http://restcountries.eu/rest/v1/name/"+landSrc);
+                URL url;
+                if (landSrc.isEmpty()) {
+                    url = new URL("http://restcountries.eu/rest/v1/all");
+                } else {
+                    url = new URL("http://restcountries.eu/rest/v1/name/"+landSrc);
+                }
+
 
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
