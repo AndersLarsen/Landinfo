@@ -7,13 +7,14 @@
     <string name="title_activity_splash">Splash</string>
     <string name="mainActLab">Search for country: </string>
     <string name="btntxt">Search</string>
+
     <string name="title_activity_result">Search result</string>
     <string name="title_activity_json_results">JsonResults</string>
     <string name="title_activity_result_detail">Country information</string>
     <string name="name_label">Country name:</string>
     <string name="native_name_label">Native name:</string>
     <string name="demonym_name_label">Demonym:</string>
-    <string name="capital_label">Captal:</string>
+    <string name="capital_label">Capital:</string>
     <string name="region_label">Region:</string>
     <string name="subregion_label">Subregion:</string>
     <string name="population_label">Population:</string>
