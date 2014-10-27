@@ -79,6 +79,7 @@ public class Result extends Activity {
             HttpURLConnection urlConnection = null;
             BufferedReader reader = null;
             JSONArray landArray = null;
+            int status = 0;
             try {
                 URL url;
                 if (landSrc.isEmpty()) {
@@ -91,7 +92,7 @@ public class Result extends Activity {
                 urlConnection.setRequestMethod("GET");
                 urlConnection.connect();
 
-                int status = urlConnection.getResponseCode();
+                status = urlConnection.getResponseCode();
 
                 if (status >= HttpStatus.SC_BAD_REQUEST) {
                     Log.d("Status: ", String.valueOf(status));
@@ -122,15 +123,15 @@ public class Result extends Activity {
                 e.printStackTrace();
             }
 
-            try {
-                landArray = new JSONArray(landDataJsonStr);
-            } catch (JSONException e) {
-                Log.d("Exception: ", "Try/Catch JSON doInBackground");
-                e.printStackTrace();
+            if (status < HttpStatus.SC_BAD_REQUEST) {
+                try {
+                    landArray = new JSONArray(landDataJsonStr);
+                } catch (JSONException e) {
+                    Log.d("Exception: ", "Try/Catch JSON doInBackground");
+                    e.printStackTrace();
+                }
             }
-
             return landArray;
-
         }
 
         @Override
