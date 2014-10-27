@@ -15,4 +15,11 @@
         android:id="@+id/land_list"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+
+    <TextView android:id="@android:id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="50dp"
+        android:paddingLeft="40dp"
+        android:text="@string/search_not_found"/>
 </RelativeLayout>

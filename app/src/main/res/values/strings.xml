@@ -21,5 +21,6 @@
     <string name="calling_code_label">Calling Code:</string>
     <string name="currencies_label">Currencies:</string>
     <string name="top_level_domain_label">Top Level Domain:</string>
+    <string name="search_not_found">Sorry, no match for your search was found</string>
 
 </resources>
