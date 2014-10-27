@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,7 +33,6 @@ public class Result extends Activity {
     public final static String EXTRA_LANDDATA = "net.landinfogruppen.landingo.LANDDATA";
     private String landDataJsonStr = null;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +59,6 @@ public class Result extends Activity {
                 intent.putExtra(EXTRA_LANDSRC, selectedFromList);
                 intent.putExtra(EXTRA_LANDDATA, landDataJsonStr);
                 startActivity(intent);
-
             }
         });
 
@@ -88,7 +85,6 @@ public class Result extends Activity {
                     url = new URL("http://restcountries.eu/rest/v1/name/"+landSrc);
                 }
 
-
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
                 urlConnection.connect();
@@ -108,12 +104,8 @@ public class Result extends Activity {
                 }
                 if ( buffer.length() == 0){
                     return null;
-
                 }
                 landDataJsonStr = buffer.toString();
-                Log.d("json stringen ", landDataJsonStr);
-
-
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -121,12 +113,7 @@ public class Result extends Activity {
             }
 
             try {
-
                  landArray = new JSONArray(landDataJsonStr);
-                //JSONObject jsonObject = new JSONObject(landDataJsonStr);
-                //landArray = jsonObject.getJSONArray("list");
-
-                //    SharedPreferences prefs = .getSharedPreferences("net.landinfogruppen.landinfo", Context.MODE_PRIVATE);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -135,9 +122,7 @@ public class Result extends Activity {
 
         @Override
         protected void onPostExecute(JSONArray landArray) {
-            //super.onPostExecute(landArray);
             if (landArray != null){
-                Log.d("landArray.length: ",Integer.toString(landArray.length()));
                 String[] resultStr = new String[landArray.length()];
                 for (int i = 0; i<landArray.length();i++){
                     try {
@@ -150,7 +135,6 @@ public class Result extends Activity {
                     }
                 }
                 if (resultStr.length != 0){
-                    //landDataAdapter.clear();
                     for ( String landStr : resultStr){
                         landDataAdapter.add(landStr);
                     }
@@ -178,7 +162,6 @@ public class Result extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
 }
 

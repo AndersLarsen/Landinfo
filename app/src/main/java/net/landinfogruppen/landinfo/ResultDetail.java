@@ -3,7 +3,6 @@ package net.landinfogruppen.landinfo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -41,10 +40,11 @@ public class ResultDetail extends Activity {
                 try {
                     JSONObject land = jsonArray.getJSONObject(i);
                     landName = land.getString("name");
-                    Log.d("ResultDetail: Selected from list" , selectedFromList);
-                    Log.d("ResultDetail: LandName!!!!: ",landName);
+
                     if (landName.equals(selectedFromList)){
+
                         setTitle(landName);
+
                         nativeName = land.getString("nativeName");
                         demonym = land.getString("demonym");
                         capital = land.getString("capital");
@@ -89,19 +89,15 @@ public class ResultDetail extends Activity {
                         TextView textView10 = (TextView) findViewById(R.id.textview_top_level_domain);
                         textView10.setText(topLevelDomain);
                     }
-                    //resultStr[i] = landName;
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
 
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
     }
 
