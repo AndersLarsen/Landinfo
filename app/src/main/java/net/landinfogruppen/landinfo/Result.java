@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import org.apache.http.HttpStatus;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -89,23 +91,29 @@ public class Result extends Activity {
                 urlConnection.setRequestMethod("GET");
                 urlConnection.connect();
 
-                InputStream inputStream = urlConnection.getInputStream();
-                StringBuffer buffer = new StringBuffer();
-                if( inputStream == null){
+                int status = urlConnection.getResponseCode();
 
-                    return null;
-                }
+                if (status >= HttpStatus.SC_BAD_REQUEST) {
+                    Log.d("Status: ", "BAD REQUEST!!!!!!!");
+                } else {
+                    InputStream inputStream = urlConnection.getInputStream();
+                    StringBuffer buffer = new StringBuffer();
 
-                reader = new BufferedReader(new InputStreamReader(inputStream));
+                    if (inputStream == null) {
+                        return null;
+                    }
 
-                String line;
-                while ((line = reader.readLine())!= null){
-                    buffer.append(line + "\n");
+                    reader = new BufferedReader(new InputStreamReader(inputStream));
+
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        buffer.append(line + "\n");
+                    }
+                    if (buffer.length() == 0) {
+                        return null;
+                    }
+                    landDataJsonStr = buffer.toString();
                 }
-                if ( buffer.length() == 0){
-                    return null;
-                }
-                landDataJsonStr = buffer.toString();
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -113,11 +121,13 @@ public class Result extends Activity {
             }
 
             try {
-                 landArray = new JSONArray(landDataJsonStr);
+                landArray = new JSONArray(landDataJsonStr);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
             return landArray;
+
         }
 
         @Override
@@ -127,11 +137,11 @@ public class Result extends Activity {
                 for (int i = 0; i<landArray.length();i++){
                     try {
                         JSONObject land = landArray.getJSONObject(i);
-                         landName = land.getString("name");
+                        landName = land.getString("name");
                         resultStr[i] = landName;
-
                     } catch (JSONException e) {
                         e.printStackTrace();
+
                     }
                 }
                 if (resultStr.length != 0){
