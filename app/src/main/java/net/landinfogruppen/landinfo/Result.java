@@ -171,6 +171,9 @@ public class Result extends Activity {
                 Toast.makeText(getApplicationContext(),
                         "Sorry, no match for your search was found", Toast.LENGTH_LONG).show();
 
+                Intent intent = new Intent(Result.this,MainActivity.class);
+                startActivity(intent);
+
 
             }
         }

@@ -6,7 +6,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="net.landinfogruppen.landinfo.Result">
+    tools:context="net.landinfogruppen.landinfo.Result"
+    android:background="@color/backgroundblue">
 
 
     <ListView
@@ -14,13 +15,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/land_list"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView  android:id="@android:id/empty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="50dp"
-        android:paddingLeft="40dp"
-       />
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"/>
 
 </RelativeLayout>
