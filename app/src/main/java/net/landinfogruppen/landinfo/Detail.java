@@ -33,7 +33,6 @@ public class Detail extends Activity {
 
         Intent intent = getIntent();
         String selectedFromList = intent.getStringExtra(Result.EXTRA_LANDSRC);
-
         GetDetailData getDetailData = new GetDetailData();
         getDetailData.execute(selectedFromList);
     }

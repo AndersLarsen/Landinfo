@@ -29,8 +29,10 @@ import java.util.ArrayList;
 public class Result extends Activity {
 
     private ArrayAdapter<String> landDataAdapter;
-    String landName;
+    private String landName;
     public final static String EXTRA_LANDSRC = "net.landinfogruppen.landinfo.MESSAGE";
+    public final static String EXTRA_LANDDATA = "net.landinfogruppen.landingo.LANDDATA";
+    private String landDataJsonStr = null;
 
 
     @Override
@@ -54,10 +56,10 @@ public class Result extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent = new Intent(Result.this,Detail.class);
+                Intent intent = new Intent(Result.this,ResultDetail.class);
                 String selectedFromList = (String) listView.getItemAtPosition(position);
                 intent.putExtra(EXTRA_LANDSRC, selectedFromList);
-                Log.d("Selected from list" , selectedFromList);
+                intent.putExtra(EXTRA_LANDDATA, landDataJsonStr);
                 startActivity(intent);
 
             }
@@ -77,7 +79,6 @@ public class Result extends Activity {
             String landSrc = params[0];
             HttpURLConnection urlConnection = null;
             BufferedReader reader = null;
-            String landDataJsonStr = null;
             JSONArray landArray = null;
             try {
                 URL url = new URL("http://restcountries.eu/rest/v1/name/"+landSrc);
@@ -130,7 +131,6 @@ public class Result extends Activity {
         protected void onPostExecute(JSONArray landArray) {
             //super.onPostExecute(landArray);
             if (landArray != null){
-
                 Log.d("landArray.length: ",Integer.toString(landArray.length()));
                 String[] resultStr = new String[landArray.length()];
                 for (int i = 0; i<landArray.length();i++){

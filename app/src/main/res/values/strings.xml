@@ -9,5 +9,17 @@
     <string name="btntxt">Søk</string>
     <string name="title_activity_result">Result</string>
     <string name="title_activity_json_results">JsonResults</string>
+    <string name="title_activity_result_detail">ResultDetail</string>
+    <string name="name_label">Country name:</string>
+    <string name="native_name_label">Native name:</string>
+    <string name="demonym_name_label">Demonym:</string>
+    <string name="capital_label">Captal:</string>
+    <string name="region_label">Region:</string>
+    <string name="subregion_label">Subregion:</string>
+    <string name="population_label">Population:</string>
+    <string name="area_label">Area:</string>
+    <string name="calling_code_label">Calling Code:</string>
+    <string name="currency_label">Currency:</string>
+    <string name="top_level_domain_label">Top Level Domain:</string>
 
 </resources>
