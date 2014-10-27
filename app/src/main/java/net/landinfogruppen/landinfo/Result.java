@@ -94,7 +94,7 @@ public class Result extends Activity {
                 int status = urlConnection.getResponseCode();
 
                 if (status >= HttpStatus.SC_BAD_REQUEST) {
-                    Log.d("Status: ", "BAD REQUEST!!!!!!!");
+                    Log.d("Status: ", String.valueOf(status));
                 } else {
                     InputStream inputStream = urlConnection.getInputStream();
                     StringBuffer buffer = new StringBuffer();
@@ -115,14 +115,17 @@ public class Result extends Activity {
                     landDataJsonStr = buffer.toString();
                 }
             } catch (MalformedURLException e) {
+                Log.d("Exception: ", "Try/Catch Malformed doInBackground");
                 e.printStackTrace();
             } catch (IOException e) {
+                Log.d("Exception: ", "Try/Catch IO doInBackground");
                 e.printStackTrace();
             }
 
             try {
                 landArray = new JSONArray(landDataJsonStr);
             } catch (JSONException e) {
+                Log.d("Exception: ", "Try/Catch JSON doInBackground");
                 e.printStackTrace();
             }
 
@@ -140,6 +143,7 @@ public class Result extends Activity {
                         landName = land.getString("name");
                         resultStr[i] = landName;
                     } catch (JSONException e) {
+                        Log.d("Exception: ", "Try/Catch JSON onPostExecute");
                         e.printStackTrace();
 
                     }
