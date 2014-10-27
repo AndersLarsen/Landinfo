@@ -51,7 +51,10 @@ public class Result extends Activity {
         // instanserer ArrayAdapter slik at resultat fra GetLandData kan legges inn
         landDataAdapter = new ArrayAdapter<String>(this, R.layout.listview, new ArrayList<String>());
         final ListView listView = (ListView)findViewById(R.id.land_list);
+
+        listView.setEmptyView(findViewById(android.R.id.empty));
         listView.setAdapter(landDataAdapter);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
