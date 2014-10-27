@@ -8,5 +8,6 @@
     <string name="mainActLab">Søk etter land : </string>
     <string name="btntxt">Søk</string>
     <string name="title_activity_result">Result</string>
+    <string name="title_activity_json_results">JsonResults</string>
 
 </resources>

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -45,8 +47,17 @@ public class Result extends Activity {
 
         // instanserer ArrayAdapter slik at resultat fra GetLandData kan legges inn
         landDataAdapter = new ArrayAdapter<String>(this, R.layout.listview, new ArrayList<String>());
-        ListView listView = (ListView)findViewById(R.id.land_list);
+        final ListView listView = (ListView)findViewById(R.id.land_list);
         listView.setAdapter(landDataAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent intent = new Intent(Result.this,Detail.class);
+                startActivity(intent);
+
+            }
+        });
 
         // starter AsyncTask for henting av data
         GetLandData getLandData = new GetLandData();
