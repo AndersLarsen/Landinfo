@@ -44,6 +44,7 @@ public class ResultDetail extends Activity {
                     Log.d("ResultDetail: Selected from list" , selectedFromList);
                     Log.d("ResultDetail: LandName!!!!: ",landName);
                     if (landName.equals(selectedFromList)){
+                        setTitle(landName);
                         nativeName = land.getString("nativeName");
                         demonym = land.getString("demonym");
                         capital = land.getString("capital");

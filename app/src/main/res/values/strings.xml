@@ -5,11 +5,11 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_splash">Splash</string>
-    <string name="mainActLab">Søk etter land : </string>
-    <string name="btntxt">Søk</string>
-    <string name="title_activity_result">Result</string>
+    <string name="mainActLab">Search for country: </string>
+    <string name="btntxt">Search</string>
+    <string name="title_activity_result">Search result</string>
     <string name="title_activity_json_results">JsonResults</string>
-    <string name="title_activity_result_detail">ResultDetail</string>
+    <string name="title_activity_result_detail">Country information</string>
     <string name="name_label">Country name:</string>
     <string name="native_name_label">Native name:</string>
     <string name="demonym_name_label">Demonym:</string>
