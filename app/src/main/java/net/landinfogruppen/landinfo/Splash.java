@@ -8,24 +8,25 @@ import android.os.Handler;
 
 
 public class Splash extends Activity {
-
-    private final int SPLASH_TIME = 2000;
+    private final int SPLASH_TIME = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
         try {
             ActionBar actionBar = getActionBar();
             actionBar.hide();
         }catch (NullPointerException i){
 
         }
+
         new Handler().postDelayed(new Runnable() {
 
             @Override
             public void run() {
+
+
                 Intent intent = new Intent(Splash.this,MainActivity.class);
                 Splash.this.startActivity(intent);
                 Splash.this.finish();
